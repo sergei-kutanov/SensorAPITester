@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sensor tester</title>
+</head>
+<body>
+
+<h1>Raw sensor data</h1>
+<ul>
+    <li>Accelerometer: <span id="acc">testing</span></li>
+    <li>Gyroscope: <span id="gyr">testing</span></li>
+    <li>Magnetic field: <span id="mag">testing</span></li>
+    <li>Linear acceleration: <span id="lac">testing</span></li>
+    <li>Orientation: <span id="ori">testing</span></li>
+    <li>Proximity: <span id="pro">testing</span></li>
+</ul>
+
+<span id="test"></span>
+
+<script type="text/javascript">
+
+    //run raw sensors
+    var accLab = document.getElementById("acc");
+    var gyrLab = document.getElementById("gyr");
+    var magLab = document.getElementById("mag");
+    var lacLab = document.getElementById("lac");
+    var oriLab = document.getElementById("ori");
+    var proLab = document.getElementById("pro");
+
+    startSensor('Accelerometer', accLab);
+    startSensor('Gyroscope', gyrLab);
+    startSensor('Magnetometer', magLab);
+    startSensor('LinearAccelerationSensor', lacLab)
+    startSensor('AbsoluteOrientationSensor', oriLab)
+    startSensor('ProximitySensor', proLab)
+
+    function startSensor(sensorName, label) {
+
+        label.textContent = 'Starting sensor';
+
+        if (typeof window[sensorName] !== 'function') {
+            label.textContent = 'Not available';
+            return;
+        }
+
+        var sensor = new window[sensorName]({
+            frequency: 1
+        });
+        sensor.onerror = function(event) {
+            console.log(event)
+            label.textContent = event.error.message;
+        }
+        sensor.onreading = function() {
+            label.textContent = 'available'
+            sensor.stop()
+        };
+        sensor.start()
+    }
+
+</script>
+</body>
+</html>
