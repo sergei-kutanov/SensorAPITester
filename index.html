@@ -21,12 +21,8 @@
 <ul>
     <li>Accelerometer: <span id="dacc">testing</span></li>
     <li>Gyroscope: <span id="dgyr">testing</span></li>
-    <li>Magnetic field: <span id="dmag">testing</span></li>
     <li>Linear acceleration: <span id="dlac">testing</span></li>
     <li>Orientation: <span id="dori">testing</span></li>
-    <li>Proximity: <span id="dpro">testing</span></li>
-<!--    <li>Device motion: <span id="devicemotion"></span></li>-->
-<!--    <li>Device rotation: <span id="devicerotation"></span></li>-->
 </ul>
 
 <script type="text/javascript">
@@ -88,12 +84,23 @@
             y: event.acceleration.y,
             z: event.acceleration.z
         })
+        dgyrLab.innerText = JSON.stringify({
+            x: event.rotationRate.beta,
+            y: event.rotationRate.gamma,
+            z: event.rotationRate.alpha
+        })
         console.log(event)
         window.removeEventListener('devicemotion', dmListener)
     }
 
     var drListener = function (event) {
         console.log(event)
+        doriLab.innerText = JSON.stringify({
+            absolute: event.absolute,
+            x: event.beta,
+            y: event.gamma,
+            z: event.alpha
+        })
         window.removeEventListener('deviceorientation', drListener)
     }
 
