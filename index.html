@@ -136,6 +136,7 @@
     function subscribeToDeviceRotation() {
         doriLab.innerText = 'subscribed';
         window.addEventListener('deviceorientation', drListener, false)
+        reqDoPermBtn.style.display = 'none';
     }
 
     function subscribeToDeviceMotion() {
@@ -143,6 +144,7 @@
         dlacLab.innerText = 'subscribed';
         dgyrLab.innerText = 'subscribed';
         window.addEventListener('devicemotion', dmListener, false)
+        reqDmPermBtn.style.display = 'none';
     }
 
 </script>
