@@ -20,6 +20,7 @@
 <h1>Device motion and rotation</h1>
 <ul>
     <li>Device motion: <span id="devicemotion"></span></li>
+    <li>Device rotation: <span id="devicerotation"></span></li>
 </ul>
 
 <script type="text/javascript">
@@ -68,16 +69,31 @@
     } else {
         subscribeToDeviceMotion()
     }
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        console.log('Requesting device rotation permission')
+    } else {
+        subscribeToDeviceRotation()
+    }
 
     var dmListener = function (event) {
         var dm = document.getElementById('devicemotion')
         dm.innerText = JSON.stringify(event)
         console.log(event)
-        window.removeEventListener('devicemotion', dmListener)
+        // window.removeEventListener('devicemotion', dmListener)
+    }
+
+    var drListener = function (event) {
+        var dr = document.getElementById('devicerotation')
+        dr.innerText = JSON.stringify(event)
+        console.log(event)
+    }
+
+    function subscribeToDeviceRotation() {
+        window.addEventListener('deviceorientation', drListener, false)
     }
 
     function subscribeToDeviceMotion() {
-        window.addEventListener('devicemotion', dmListener)
+        window.addEventListener('devicemotion', dmListener, false)
     }
 
 </script>
