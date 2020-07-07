@@ -68,13 +68,14 @@
         var dm = document.getElementById('devicemotion')
         dm.innerText = JSON.stringify(event)
         console.log(event)
-        // window.removeEventListener('devicemotion', dmListener)
+        window.removeEventListener('devicemotion', dmListener)
     }
 
     var drListener = function (event) {
         var dr = document.getElementById('devicerotation')
         dr.innerText = JSON.stringify(event)
         console.log(event)
+        window.removeEventListener('deviceorientation', drListener)
     }
 
     if (typeof DeviceMotionEvent.requestPermission === 'function') {
