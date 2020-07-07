@@ -77,6 +77,33 @@
     var reqDmPermBtn = document.getElementById('reqdmperm');
     var reqDoPermBtn = document.getElementById('reqdoperm');
 
+    var debounce = function (func, delay) {
+        var inDebounce;
+        return function () {
+            var context = this;
+            var args = arguments;
+            clearTimeout(inDebounce)
+            inDebounce = setTimeout(function () {
+                func.apply(context, args)
+            }, delay)
+        }
+    }
+
+    var throttle = function (func, limit) {
+        var inThrottle;
+        return function () {
+            var args = arguments;
+            var context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(function () {
+                    inThrottle = false
+                }, limit)
+            }
+        }
+    }
+
     var dmListener = function (event) {
         daccLab.innerText = JSON.stringify({
             x: event.accelerationIncludingGravity.x,
@@ -93,8 +120,6 @@
             y: event.rotationRate.gamma,
             z: event.rotationRate.alpha
         })
-        // console.log(event)
-        // window.removeEventListener('devicemotion', dmListener)
     }
 
     var drListener = function (event) {
@@ -135,7 +160,7 @@
 
     function subscribeToDeviceRotation() {
         doriLab.innerText = 'subscribed';
-        window.addEventListener('deviceorientation', drListener, false)
+        window.addEventListener('deviceorientation', throttle(drListener, 300), false)
         reqDoPermBtn.style.display = 'none';
     }
 
@@ -143,7 +168,7 @@
         daccLab.innerText = 'subscribed';
         dlacLab.innerText = 'subscribed';
         dgyrLab.innerText = 'subscribed';
-        window.addEventListener('devicemotion', dmListener, false)
+        window.addEventListener('devicemotion', throttle(dmListener, 300), false)
         reqDmPermBtn.style.display = 'none';
     }
 
