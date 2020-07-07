@@ -64,17 +64,6 @@
     }
 
     //device motion rotation
-    if (typeof DeviceMotionEvent.requestPermission === 'function') {
-        console.log('Requesting devicemotion permission')
-    } else {
-        subscribeToDeviceMotion()
-    }
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        console.log('Requesting device rotation permission')
-    } else {
-        subscribeToDeviceRotation()
-    }
-
     var dmListener = function (event) {
         var dm = document.getElementById('devicemotion')
         dm.innerText = JSON.stringify(event)
@@ -86,6 +75,17 @@
         var dr = document.getElementById('devicerotation')
         dr.innerText = JSON.stringify(event)
         console.log(event)
+    }
+
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+        console.log('Requesting devicemotion permission')
+    } else {
+        subscribeToDeviceMotion()
+    }
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        console.log('Requesting device rotation permission')
+    } else {
+        subscribeToDeviceRotation()
     }
 
     function subscribeToDeviceRotation() {
