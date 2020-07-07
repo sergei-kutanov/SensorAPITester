@@ -89,19 +89,19 @@
             y: event.rotationRate.gamma,
             z: event.rotationRate.alpha
         })
-        console.log(event)
-        window.removeEventListener('devicemotion', dmListener)
+        // console.log(event)
+        // window.removeEventListener('devicemotion', dmListener)
     }
 
     var drListener = function (event) {
-        console.log(event)
+        // console.log(event)
         doriLab.innerText = JSON.stringify({
             absolute: event.absolute,
             x: event.beta,
             y: event.gamma,
             z: event.alpha
         })
-        window.removeEventListener('deviceorientation', drListener)
+        // window.removeEventListener('deviceorientation', drListener)
     }
 
     if (typeof DeviceMotionEvent.requestPermission === 'function') {
