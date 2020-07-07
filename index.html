@@ -19,8 +19,14 @@
 <hr>
 <h1>Device motion and rotation</h1>
 <ul>
-    <li>Device motion: <span id="devicemotion"></span></li>
-    <li>Device rotation: <span id="devicerotation"></span></li>
+    <li>Accelerometer: <span id="dacc">testing</span></li>
+    <li>Gyroscope: <span id="dgyr">testing</span></li>
+    <li>Magnetic field: <span id="dmag">testing</span></li>
+    <li>Linear acceleration: <span id="dlac">testing</span></li>
+    <li>Orientation: <span id="dori">testing</span></li>
+    <li>Proximity: <span id="dpro">testing</span></li>
+<!--    <li>Device motion: <span id="devicemotion"></span></li>-->
+<!--    <li>Device rotation: <span id="devicerotation"></span></li>-->
 </ul>
 
 <script type="text/javascript">
@@ -64,16 +70,20 @@
     }
 
     //device motion rotation
+    var daccLab = document.getElementById("dacc");
+    var dgyrLab = document.getElementById("dgyr");
+    var dmagLab = document.getElementById("dmag");
+    var dlacLab = document.getElementById("dlac");
+    var doriLab = document.getElementById("dori");
+
+
     var dmListener = function (event) {
-        var dm = document.getElementById('devicemotion')
-        dm.innerText = JSON.stringify(event)
+        daccLab.innerText = JSON.stringify(event.acceleration)
         console.log(event)
         window.removeEventListener('devicemotion', dmListener)
     }
 
     var drListener = function (event) {
-        var dr = document.getElementById('devicerotation')
-        dr.innerText = JSON.stringify(event)
         console.log(event)
         window.removeEventListener('deviceorientation', drListener)
     }
