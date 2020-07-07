@@ -19,7 +19,7 @@
 <hr>
 <h1>Device motion and rotation</h1>
 <ul>
-    <li></li>
+    <li>Device motion: <span id="devicemotion"></span></li>
 </ul>
 
 <script type="text/javascript">
@@ -69,10 +69,15 @@
         subscribeToDeviceMotion()
     }
 
+    var dmListener = function (event) {
+        var dm = document.getElementById('devicemotion')
+        dm.innerText = JSON.stringify(event)
+        console.log(event)
+        window.removeEventListener('devicemotion', dmListener)
+    }
+
     function subscribeToDeviceMotion() {
-        window.addEventListener('devicemotion', function (event) {
-            console.log(event)
-        })
+        window.addEventListener('devicemotion', dmListener)
     }
 
 </script>
