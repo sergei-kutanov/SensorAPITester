@@ -78,7 +78,16 @@
 
 
     var dmListener = function (event) {
-        daccLab.innerText = JSON.stringify(event.acceleration)
+        daccLab.innerText = JSON.stringify({
+            x: event.accelerationIncludingGravity.x,
+            y: event.accelerationIncludingGravity.y,
+            z: event.accelerationIncludingGravity.z
+        })
+        dlacLab.innerText = JSON.stringify({
+            x: event.acceleration.x,
+            y: event.acceleration.y,
+            z: event.acceleration.z
+        })
         console.log(event)
         window.removeEventListener('devicemotion', dmListener)
     }
