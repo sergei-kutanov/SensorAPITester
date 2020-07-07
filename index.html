@@ -16,7 +16,11 @@
     <li>Proximity: <span id="pro">testing</span></li>
 </ul>
 
-<span id="test"></span>
+<hr>
+<h1>Device motion and rotation</h1>
+<ul>
+    <li></li>
+</ul>
 
 <script type="text/javascript">
 
@@ -56,6 +60,19 @@
             sensor.stop()
         };
         sensor.start()
+    }
+
+    //device motion rotation
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+        console.log('Requesting devicemotion permission')
+    } else {
+        subscribeToDeviceMotion()
+    }
+
+    function subscribeToDeviceMotion() {
+        window.addEventListener('devicemotion', function (event) {
+            console.log(event)
+        })
     }
 
 </script>
