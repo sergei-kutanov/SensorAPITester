@@ -62,30 +62,25 @@ var drListener = function (event) {
 }
 
 if (typeof DeviceMotionEvent === 'function' && typeof DeviceMotionEvent.requestPermission === 'function') {
-
-    DeviceMotionEvent.requestPermission().then(function (status) {
-        if (status !== 'granted') {
-            reqDmPermBtn.addEventListener('click', function () {
-                DeviceMotionEvent.requestPermission().then(function(status){
-                    if (status === 'granted') {
-                        subscribeToDeviceMotion()
-                    }
-                });
-            })
-            reqDmPermBtn.style.display = 'initial';
-        } else {
-            subscribeToDeviceMotion()
-        }
+    subscribeToDeviceMotion()
+    reqDmPermBtn.addEventListener('click', function () {
+        DeviceMotionEvent.requestPermission().then(function(status){
+            // if (status === 'granted') {
+            //     subscribeToDeviceMotion()
+            // }
+        });
     })
+    reqDmPermBtn.style.display = 'initial';
 } else {
     subscribeToDeviceMotion()
 }
 if (typeof DeviceOrientationEvent === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+    subscribeToDeviceRotation()
     reqDoPermBtn.addEventListener('click', function () {
         DeviceOrientationEvent.requestPermission().then(function (status) {
-            if (status === 'granted') {
-                subscribeToDeviceRotation()
-            }
+            // if (status === 'granted') {
+                // subscribeToDeviceRotation()
+            // }
         })
     })
     reqDoPermBtn.style.display = 'initial';
