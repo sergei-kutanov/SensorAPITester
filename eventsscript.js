@@ -63,14 +63,20 @@ var drListener = function (event) {
 
 if (typeof DeviceMotionEvent === 'function' && typeof DeviceMotionEvent.requestPermission === 'function') {
 
-    reqDmPermBtn.addEventListener('click', function () {
-        DeviceMotionEvent.requestPermission().then(function(status){
-            if (status === 'granted') {
-                subscribeToDeviceMotion()
-            }
-        });
+    DeviceMotionEvent.requestPermission().then(function (status) {
+        if (status !== 'granted') {
+            reqDmPermBtn.addEventListener('click', function () {
+                DeviceMotionEvent.requestPermission().then(function(status){
+                    if (status === 'granted') {
+                        subscribeToDeviceMotion()
+                    }
+                });
+            })
+            reqDmPermBtn.style.display = 'initial';
+        } else {
+            subscribeToDeviceMotion()
+        }
     })
-    reqDmPermBtn.style.display = 'initial';
 } else {
     subscribeToDeviceMotion()
 }
