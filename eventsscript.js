@@ -61,7 +61,7 @@ var drListener = function (event) {
     })
 }
 
-if (typeof DeviceMotionEvent === 'object' && typeof DeviceMotionEvent.requestPermission === 'function') {
+if (typeof DeviceMotionEvent === 'function' && typeof DeviceMotionEvent.requestPermission === 'function') {
 
     reqDmPermBtn.addEventListener('click', function () {
         DeviceMotionEvent.requestPermission().then(function(status){
@@ -74,7 +74,7 @@ if (typeof DeviceMotionEvent === 'object' && typeof DeviceMotionEvent.requestPer
 } else {
     subscribeToDeviceMotion()
 }
-if (typeof DeviceOrientationEvent === 'object' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+if (typeof DeviceOrientationEvent === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
     reqDoPermBtn.addEventListener('click', function () {
         DeviceOrientationEvent.requestPermission().then(function (status) {
             if (status === 'granted') {
