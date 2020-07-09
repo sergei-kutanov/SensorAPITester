@@ -34,7 +34,12 @@ var throttle = function (func, limit) {
     }
 }
 
+/**
+ *
+ * @param {DeviceMotionEvent} event
+ */
 var dmListener = function (event) {
+    console.log('DM interval: ' + event.interval)
     daccLab.innerText = JSON.stringify({
         x: event.accelerationIncludingGravity.x,
         y: event.accelerationIncludingGravity.y,
@@ -52,7 +57,12 @@ var dmListener = function (event) {
     })
 }
 
+/**
+ *
+ * @param {DeviceOrientationEvent} event
+ */
 var drListener = function (event) {
+    console.log(event)
     doriLab.innerText = JSON.stringify({
         absolute: event.absolute,
         x: event.beta,
