@@ -62,7 +62,6 @@ var dmListener = function (event) {
  * @param {DeviceOrientationEvent} event
  */
 var drListener = function (event) {
-    console.log(event)
     doriLab.innerText = JSON.stringify({
         absolute: event.absolute,
         x: event.beta,
@@ -100,7 +99,7 @@ if (typeof DeviceOrientationEvent === 'function' && typeof DeviceOrientationEven
 
 function subscribeToDeviceRotation() {
     doriLab.innerText = 'subscribed';
-    window.addEventListener('deviceorientation', throttle(drListener, 300), false)
+    window.addEventListener('deviceorientation', drListener, false)
     reqDoPermBtn.style.display = 'none';
 }
 
