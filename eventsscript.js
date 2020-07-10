@@ -39,7 +39,7 @@ var throttle = function (func, limit) {
  * @param {DeviceMotionEvent} event
  */
 var dmListener = function (event) {
-    console.log('DM interval: ' + event.interval)
+    console.log(event)
     daccLab.innerText = JSON.stringify({
         x: event.accelerationIncludingGravity.x,
         y: event.accelerationIncludingGravity.y,
@@ -62,6 +62,7 @@ var dmListener = function (event) {
  * @param {DeviceOrientationEvent} event
  */
 var drListener = function (event) {
+    console.log(event);
     doriLab.innerText = JSON.stringify({
         absolute: event.absolute,
         x: event.beta,
@@ -73,11 +74,7 @@ var drListener = function (event) {
 if (typeof DeviceMotionEvent === 'function' && typeof DeviceMotionEvent.requestPermission === 'function') {
     subscribeToDeviceMotion()
     reqDmPermBtn.addEventListener('click', function () {
-        DeviceMotionEvent.requestPermission().then(function(status){
-            // if (status === 'granted') {
-            //     subscribeToDeviceMotion()
-            // }
-        });
+        DeviceMotionEvent.requestPermission().then(function(status){});
     })
     reqDmPermBtn.style.display = 'initial';
 } else {
@@ -86,11 +83,7 @@ if (typeof DeviceMotionEvent === 'function' && typeof DeviceMotionEvent.requestP
 if (typeof DeviceOrientationEvent === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
     subscribeToDeviceRotation()
     reqDoPermBtn.addEventListener('click', function () {
-        DeviceOrientationEvent.requestPermission().then(function (status) {
-            // if (status === 'granted') {
-                // subscribeToDeviceRotation()
-            // }
-        })
+        DeviceOrientationEvent.requestPermission().then(function (status) {})
     })
     reqDoPermBtn.style.display = 'initial';
 } else {
@@ -99,7 +92,7 @@ if (typeof DeviceOrientationEvent === 'function' && typeof DeviceOrientationEven
 
 function subscribeToDeviceRotation() {
     doriLab.innerText = 'subscribed';
-    window.addEventListener('deviceorientation', drListener, false)
+    window.addEventListener('deviceorientation', throttle(drListener, 300), false)
     reqDoPermBtn.style.display = 'none';
 }
 
