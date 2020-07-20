@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <form action="" method="post">
+    <form action="" method="post" onsubmit="return onSubmit()">
         <input type="text" />
         <input type="text" />
         <input type="submit" />
@@ -18,25 +18,29 @@
 
 <script type="text/javascript">
 
+    var cons = document.getElementById("console")
+
+    function onSubmit() {
+        cons.innerText = "<br>submitted"
+        return false
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
-
-        var cons = document.getElementById("console")
-
         document.addEventListener('touchstart', function () {
             console.log('touchstart')
-            cons.innerText = cons.innerText + " | touchstart"
+            cons.innerText = cons.innerText + "<br>touchstart"
         }, false);
         document.addEventListener('touchend', function () {
             console.log('touchend')
-            cons.innerText = cons.innerText + " | touchend"
+            cons.innerText = cons.innerText + "<br>touchend"
         }, false);
         document.addEventListener('touchcancel', function () {
             console.log('touchcancel')
-            cons.innerText = cons.innerText + " | touchcancel"
+            cons.innerText = cons.innerText + "<br>touchcancel"
         }, false);
         document.addEventListener('touchmove', function () {
             console.log('touchmove')
-            cons.innerText = cons.innerText + " | touchmove"
+            cons.innerText = cons.innerText + "<br>touchmove"
         }, false);
         console.log("started")
     })
