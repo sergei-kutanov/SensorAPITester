@@ -21,26 +21,26 @@
     var cons = document.getElementById("console")
 
     function onSubmit() {
-        cons.innerText = "<br>submitted"
+        cons.innerText = "\r\nsubmitted"
         return false
     }
 
     document.addEventListener('DOMContentLoaded', function () {
         document.addEventListener('touchstart', function () {
             console.log('touchstart')
-            cons.innerText = cons.innerText + "<br>touchstart"
+            cons.innerText = cons.innerText + "\r\ntouchstart"
         }, false);
         document.addEventListener('touchend', function () {
             console.log('touchend')
-            cons.innerText = cons.innerText + "<br>touchend"
+            cons.innerText = cons.innerText + "\r\ntouchend"
         }, false);
         document.addEventListener('touchcancel', function () {
             console.log('touchcancel')
-            cons.innerText = cons.innerText + "<br>touchcancel"
+            cons.innerText = cons.innerText + "\r\ntouchcancel"
         }, false);
         document.addEventListener('touchmove', function () {
             console.log('touchmove')
-            cons.innerText = cons.innerText + "<br>touchmove"
+            cons.innerText = cons.innerText + "\r\ntouchmove"
         }, false);
         console.log("started")
     })
