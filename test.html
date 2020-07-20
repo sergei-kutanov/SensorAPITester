@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form action="" method="post">
+        <input type="text" />
+        <input type="text" />
+        <input type="submit" />
+    </form>
+
+    <div id="console">
+
+    </div>
+
+<script type="text/javascript">
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        var cons = document.getElementById("console")
+
+        document.addEventListener('touchstart', function () {
+            console.log('touchstart')
+            cons.innerText = cons.innerText + " | touchstart"
+        }, false);
+        document.addEventListener('touchend', function () {
+            console.log('touchend')
+            cons.innerText = cons.innerText + " | touchend"
+        }, false);
+        document.addEventListener('touchcancel', function () {
+            console.log('touchcancel')
+            cons.innerText = cons.innerText + " | touchcancel"
+        }, false);
+        document.addEventListener('touchmove', function () {
+            console.log('touchmove')
+            cons.innerText = cons.innerText + " | touchmove"
+        }, false);
+        console.log("started")
+    })
+
+</script>
+
+</body>
+</html>
