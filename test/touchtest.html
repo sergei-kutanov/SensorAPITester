@@ -32,6 +32,8 @@
         return false
     }
 
+    setTimeout(triggerFocus, 3000);
+
     document.addEventListener('DOMContentLoaded', function () {
         document.addEventListener('touchstart', function () {
             console.log('touchstart')
