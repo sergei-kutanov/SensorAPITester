@@ -8,9 +8,11 @@
 
     <form action="" method="post" onsubmit="return onSubmit()">
         <input type="text" autofocus />
-        <input type="text" />
+        <input id="input2" type="text" />
         <input type="submit" />
     </form>
+
+    <button onclick="triggerFocus()"> Trigger focus</button>
 
     <div id="console">
 
@@ -19,6 +21,11 @@
 <script type="text/javascript">
 
     var cons = document.getElementById("console")
+
+    function triggerFocus() {
+        var el = document.getElementById('input2')
+        el.focus()
+    }
 
     function onSubmit() {
         cons.innerText = cons.innerText + "\r\nsubmitted"
