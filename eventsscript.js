@@ -65,9 +65,9 @@ var drListener = function (event) {
     console.log(event);
     doriLab.innerText = JSON.stringify({
         absolute: event.absolute,
-        x: event.beta,
-        y: event.gamma,
-        z: event.alpha
+        x: Math.round(event.beta * 100) / 100,
+        y: Math.round(event.gamma * 100) / 100,
+        z: Math.round(event.alpha * 100) / 100
     })
 }
 
