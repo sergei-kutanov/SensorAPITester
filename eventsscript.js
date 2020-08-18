@@ -2,6 +2,7 @@
 var daccLab = document.getElementById("dacc");
 var dgyrLab = document.getElementById("dgyr");
 var dlacLab = document.getElementById("dlac");
+var dlacMaxLab = document.getElementById("maxdlac");
 var doriLab = document.getElementById("dori");
 
 var reqDmPermBtn = document.getElementById('reqdmperm');
@@ -34,6 +35,10 @@ var throttle = function (func, limit) {
     }
 }
 
+var maxLacX = 0;
+var maxLacY = 0;
+var maxLacZ = 0;
+
 /**
  *
  * @param {DeviceMotionEvent} event
@@ -45,10 +50,27 @@ var dmListener = function (event) {
         y: Math.round(event.accelerationIncludingGravity.y * 100) / 100,
         z: Math.round(event.accelerationIncludingGravity.z * 100) / 100
     })
+    var lacX = Math.round(event.acceleration.x * 100) / 100;
+    var lacY = Math.round(event.acceleration.y * 100) / 100;
+    var lacZ = Math.round(event.acceleration.z * 100) / 100;
+    if (maxLacX < lacX) {
+        maxLacX = lacX
+    }
+    if (maxLacY < lacY) {
+        maxLacY = lacY
+    }
+    if (maxLacZ < lacZ) {
+        maxLacZ = lacZ
+    }
     dlacLab.innerText = JSON.stringify({
-        x: Math.round(event.acceleration.x * 100) / 100,
-        y: Math.round(event.acceleration.y * 100) / 100,
-        z: Math.round(event.acceleration.z * 100) / 100
+        x: lacX,
+        y: lacY,
+        z: lacZ
+    })
+    dlacMaxLab.innerText = JSON.stringify({
+        x: maxLacX,
+        y: maxLacY,
+        z: maxLacZ
     })
     dgyrLab.innerText = JSON.stringify({
         x: Math.round(event.rotationRate.beta * 100) / 100,
