@@ -41,19 +41,19 @@ var throttle = function (func, limit) {
 var dmListener = function (event) {
     console.log(event)
     daccLab.innerText = JSON.stringify({
-        x: event.accelerationIncludingGravity.x,
-        y: event.accelerationIncludingGravity.y,
-        z: event.accelerationIncludingGravity.z
+        x: Math.round(event.accelerationIncludingGravity.x * 100) / 100,
+        y: Math.round(event.accelerationIncludingGravity.y * 100) / 100,
+        z: Math.round(event.accelerationIncludingGravity.z * 100) / 100
     })
     dlacLab.innerText = JSON.stringify({
-        x: event.acceleration.x,
-        y: event.acceleration.y,
-        z: event.acceleration.z
+        x: Math.round(event.acceleration.x * 100) / 100,
+        y: Math.round(event.acceleration.y * 100) / 100,
+        z: Math.round(event.acceleration.z * 100) / 100
     })
     dgyrLab.innerText = JSON.stringify({
-        x: event.rotationRate.beta,
-        y: event.rotationRate.gamma,
-        z: event.rotationRate.alpha
+        x: Math.round(event.rotationRate.beta * 100) / 100,
+        y: Math.round(event.rotationRate.gamma * 100) / 100,
+        z: Math.round(event.rotationRate.alpha * 100) / 100
     })
 }
 
