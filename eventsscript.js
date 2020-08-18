@@ -53,13 +53,13 @@ var dmListener = function (event) {
     var lacX = Math.round(event.acceleration.x * 100) / 100;
     var lacY = Math.round(event.acceleration.y * 100) / 100;
     var lacZ = Math.round(event.acceleration.z * 100) / 100;
-    if (maxLacX < lacX) {
+    if (Math.abs(maxLacX) < Math.abs(lacX)) {
         maxLacX = lacX
     }
-    if (maxLacY < lacY) {
+    if (Math.abs(maxLacY) < Math.abs(lacY)) {
         maxLacY = lacY
     }
-    if (maxLacZ < lacZ) {
+    if (Math.abs(maxLacZ) < Math.abs(lacZ)) {
         maxLacZ = lacZ
     }
     dlacLab.innerText = JSON.stringify({
